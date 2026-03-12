@@ -1,0 +1,14 @@
+theme: null
+title: CNPCExtended
+description: HTML GUI addon for CustomNPCs 1.20.1
+baseurl: "/CNPCExtended-Docs"
+url: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+exclude:
+  - Gemfile
+  - Gemfile.lock

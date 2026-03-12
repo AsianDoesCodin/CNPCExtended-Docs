@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title | default: site.title }} — CNPCExtended</title>
+<style>
+  :root {
+    --bg: #0d0b14;
+    --bg-card: #161222;
+    --bg-code: #1a1528;
+    --border: #2a2240;
+    --gold: #c9a83e;
+    --gold-bright: #f0d060;
+    --text: #e0d8cc;
+    --text-muted: #8a7e70;
+    --accent: #7b68ee;
+    --green: #50c878;
+    --red: #e06060;
+    --sidebar-w: 260px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 10;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  .sidebar::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  .sidebar-brand {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .sidebar-brand h1 {
+    font-size: 20px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar-brand .version {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .sidebar nav { padding: 0 12px 40px; }
+
+  .sidebar nav a {
+    display: block;
+    padding: 7px 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    color: var(--gold-bright);
+    background: rgba(201, 168, 62, 0.08);
+  }
+
+  .sidebar nav a.active {
+    color: var(--gold);
+    background: rgba(201, 168, 62, 0.12);
+    font-weight: 600;
+  }
+
+  .sidebar .nav-section {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    padding: 16px 12px 6px;
+    opacity: 0.6;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 40px 60px;
+    max-width: 900px;
+  }
+
+  h1 { font-size: 32px; color: var(--gold); margin-bottom: 8px; }
+  h2 { font-size: 24px; color: var(--gold); margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 18px; color: var(--text); margin: 28px 0 12px; }
+  h4 { font-size: 15px; color: var(--text-muted); margin: 20px 0 8px; }
+
+  p { margin: 12px 0; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    color: var(--gold-bright);
+  }
+
+  pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.5;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+
+  th {
+    background: var(--bg-card);
+    color: var(--gold);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  td {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  tr:nth-child(even) { background: rgba(22, 18, 34, 0.5); }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--bg-card);
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--text-muted);
+  }
+
+  blockquote p { margin: 4px 0; }
+
+  ul, ol { margin: 12px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  .badge-mc { background: #1b5e20; color: #a5d6a7; }
+  .badge-forge { background: #4a148c; color: #ce93d8; }
+  .badge-fabric { background: #1a3a5c; color: #7fb8e0; }
+  .badge-version { background: #b8860b33; color: var(--gold); border: 1px solid var(--gold); }
+  .badge-new { background: #50c87833; color: var(--green); font-size: 11px; vertical-align: middle; }
+
+  .info-box {
+    background: rgba(123, 104, 238, 0.08);
+    border: 1px solid rgba(123, 104, 238, 0.3);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .warn-box {
+    background: rgba(201, 168, 62, 0.08);
+    border: 1px solid rgba(201, 168, 62, 0.3);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .flow-diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px 0;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text-muted);
+  }
+
+  /* ===== MOBILE ===== */
+  .menu-toggle { display: none; }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 20px; }
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 20;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  }
+
+  /* ===== SYNTAX HIGHLIGHTING (rouge) ===== */
+  .highlight .k, .highlight .kd, .highlight .kn { color: #c792ea; }
+  .highlight .s, .highlight .s1, .highlight .s2 { color: #c3e88d; }
+  .highlight .n, .highlight .na { color: #82aaff; }
+  .highlight .c, .highlight .c1, .highlight .cm { color: #546e7a; font-style: italic; }
+  .highlight .mi, .highlight .mf { color: #f78c6c; }
+  .highlight .o, .highlight .p { color: #89ddff; }
+  .highlight .nf { color: #82aaff; }
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h1>CNPCExtended</h1>
+    <div class="version">v1.2.0 · MC 1.20.1 / 1.21.1 · Forge + Fabric</div>
+  </div>
+  <nav>
+    <div class="nav-section">Getting Started</div>
+    <a href="{{ '/' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>Home</a>
+    <a href="{{ '/installation' | relative_url }}" {% if page.url contains 'installation' %}class="active"{% endif %}>Installation</a>
+    <a href="{{ '/quickstart' | relative_url }}" {% if page.url contains 'quickstart' %}class="active"{% endif %}>Quick Start</a>
+
+    <div class="nav-section">API Reference</div>
+    <a href="{{ '/api/script-api' | relative_url }}" {% if page.url contains 'script-api' %}class="active"{% endif %}>Script API (cnpcext)</a>
+    <a href="{{ '/api/html-api' | relative_url }}" {% if page.url contains 'html-api' and page.url != '/api/html-overlays' %}class="active"{% endif %}>HTML API (window.cnpc)</a>
+    <a href="{{ '/api/overlays' | relative_url }}" {% if page.url contains '/api/overlays' %}class="active"{% endif %}>Item Overlays</a>
+    <a href="{{ '/api/html-overlays' | relative_url }}" {% if page.url contains 'html-overlays' %}class="active"{% endif %}>HTML Overlays (HUD) <span class="badge badge-new">NEW</span></a>
+    <a href="{{ '/api/asset-loading' | relative_url }}" {% if page.url contains 'asset-loading' %}class="active"{% endif %}>Asset Loading (cnpc://) <span class="badge badge-new">NEW</span></a>
+    <a href="{{ '/api/queries' | relative_url }}" {% if page.url contains 'queries' %}class="active"{% endif %}>Client Queries</a>
+    <a href="{{ '/feature-matrix' | relative_url }}" {% if page.url contains 'feature-matrix' %}class="active"{% endif %}>Feature Matrix</a>
+
+    <div class="nav-section">Global Preloading</div>
+    <a href="{{ '/guides/global-scripts' | relative_url }}" {% if page.url contains 'global-scripts' %}class="active"{% endif %}>Global Scripts</a>
+    <a href="{{ '/guides/global-npc-data' | relative_url }}" {% if page.url contains 'global-npc-data' %}class="active"{% endif %}>Global NPC Data</a>
+    <a href="{{ '/guides/commands' | relative_url }}" {% if page.url contains 'commands' %}class="active"{% endif %}>Commands</a>
+
+    <div class="nav-section">Guides</div>
+    <a href="{{ '/guides/event-flow' | relative_url }}" {% if page.url contains 'event-flow' %}class="active"{% endif %}>Event Flow</a>
+    <a href="{{ '/guides/examples' | relative_url }}" {% if page.url contains 'examples' %}class="active"{% endif %}>Examples</a>
+
+    <div class="nav-section">Reference</div>
+    <a href="{{ '/limitations' | relative_url }}" {% if page.url contains 'limitations' %}class="active"{% endif %}>Known Limitations</a>
+  </nav>
+</aside>
+
+<main class="main">
+  {{ content }}
+</main>
+
+</body>
+</html>
