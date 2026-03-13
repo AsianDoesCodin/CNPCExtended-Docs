@@ -205,6 +205,7 @@ title: Feature Matrix
   <tr><td>HTML GUI (MCEF Chromium)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Full HTML/CSS/JS rendered in-game</td></tr>
   <tr><td>Bridge JS (<span class="feat-name">window.cnpc</span>)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">sendEvent, onEvent, close, initData</td></tr>
   <tr><td>MC Item Overlays</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Real ItemStack rendering on HTML elements</td></tr>
+  <tr><td>Entity Overlays</td><td class="s s-no">&#x2717;</td><td class="s s-yes">&#x2714;</td><td class="note">Full entity rendering (NPCs, players) via <span class="feat-name">data-mc-entity</span></td></tr>
   <tr><td>Clip Rects (<span class="feat-name">data-mc-clip</span>)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Scissor clipping for scrollable item lists</td></tr>
   <tr><td>Client Queries</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Video, keybinds, sound, player state, packs</td></tr>
   <tr><td>Client Script Engine</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">JSR-223 JavaScript on client side</td></tr>

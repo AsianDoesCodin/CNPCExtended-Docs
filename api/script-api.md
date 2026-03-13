@@ -137,6 +137,30 @@ The `htmlGuiEvent` handler always fires on the **same ScriptContainer** that cal
 
 ---
 
+### `cnpcext.entityId(entity)`
+
+<span class="badge badge-version">New in v1.2.0</span> <span class="badge badge-fabric">Fabric 1.21.1</span>
+
+Get the network entity ID from a CNPC IEntity wrapper. Used for HTML GUI/overlay entity displays.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entity` | IEntity | Any CNPC entity wrapper: `e.npc`, `e.player`, etc. |
+| **Returns** | `int` | Network entity ID, or `-1` if extraction fails |
+
+```javascript
+cnpcext.openHtmlGui(e, "dialogue.html", 0, 0, JSON.stringify({
+    overlayEntities: [
+        {slot: 0, entityId: cnpcext.entityId(e.npc)},
+        {slot: 1, entityId: cnpcext.entityId(e.player)}
+    ]
+}))
+```
+
+See [HTML API — Entity Display](html-api.md#entity-display) for the HTML-side setup.
+
+---
+
 ### `cnpcext.registerCommand(name, jsonDefinition)`
 
 <span class="badge badge-version">New in v1.1.0</span>

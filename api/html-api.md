@@ -148,3 +148,50 @@ Since the GUI runs in a real Chromium browser, you have full access to:
 <div class="warn-box">
 <strong>No localStorage.</strong> HTML runs from <code>data:</code> URLs which don't support localStorage/sessionStorage. Use <code>sendEvent</code> to persist data server-side via CNPC's <code>storeddata</code>.
 </div>
+
+---
+
+### Entity Display
+
+Render full Minecraft entities (NPCs, players, mobs) inside your HTML GUI. Entities render with their full custom skin, equipment, and model — using CNPC's native entity renderer.
+
+#### Setup
+
+1. **Server script** — pass entity IDs in `overlayEntities`:
+
+```javascript
+cnpcext.openHtmlGui(e, "dialogue.html", 0, 0, JSON.stringify({
+    overlayEntities: [
+        {slot: 0, entityId: cnpcext.entityId(e.npc)},
+        {slot: 1, entityId: cnpcext.entityId(e.player)}
+    ]
+}))
+```
+
+2. **HTML** — add `data-mc-entity` attributes with the slot number:
+
+```html
+<div data-mc-entity="0" style="width: 150px; height: 210px;"></div>
+<div data-mc-entity="1" style="width: 150px; height: 210px;"></div>
+```
+
+The entity renders at the element's position and size. Resize or reposition the element with CSS to control where and how big the entity appears.
+
+#### `cnpcext.entityId(entity)`
+
+Extracts the network entity ID from any CNPC IEntity wrapper.
+
+- **Input**: `e.npc`, `e.player`, or any CNPC entity wrapper
+- **Returns**: `int` — the network entity ID, or `-1` if extraction fails
+
+#### Behavior
+
+- Entity head tracks the mouse cursor (`followCursor = true`)
+- Entity is rendered with CNPC's `CustomGuiEntityDisplay.drawEntity()`
+- The entity's feet anchor at the **bottom-center** of the `data-mc-entity` div
+- To hide an entity, set the div's `width` and `height` to `0` (CSS `opacity: 0` alone won't hide it — the renderer ignores opacity)
+- Works in both HTML GUIs and HUD overlays
+
+<div class="info-box">
+<strong>Fabric 1.21.1 only.</strong> Entity overlays are not yet available on Forge 1.20.1.
+</div>
