@@ -3,145 +3,6 @@ layout: default
 title: Feature Matrix
 ---
 
-<style>
-  /* ===== Summary Cards ===== */
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-    margin: 24px 0 36px;
-  }
-  .summary-card {
-    background: linear-gradient(135deg, var(--bg-card), rgba(42, 34, 64, 0.6));
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 16px;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .summary-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
-  .summary-card .num {
-    font-size: 32px;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-  }
-  .summary-card .lbl {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* ===== Legend ===== */
-  .legend {
-    display: flex;
-    gap: 24px;
-    margin: 0 0 24px;
-    font-size: 13px;
-    color: var(--text-muted);
-    flex-wrap: wrap;
-  }
-  .legend-item { display: flex; align-items: center; gap: 6px; }
-
-  /* ===== Section Headers ===== */
-  .section-hdr {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 44px 0 18px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .section-hdr .icon {
-    font-size: 22px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    background: rgba(201, 168, 62, 0.08);
-  }
-  .section-hdr h3 {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    font-size: 19px;
-    color: var(--gold);
-  }
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    white-space: nowrap;
-  }
-  .tag-new { background: rgba(80, 200, 120, 0.12); color: #50c878; border: 1px solid rgba(80, 200, 120, 0.25); }
-  .tag-fabric { background: rgba(100, 170, 220, 0.1); color: #7fb8e0; border: 1px solid rgba(100, 170, 220, 0.2); }
-  .tag-both { background: rgba(201, 168, 62, 0.08); color: var(--gold); border: 1px solid rgba(201, 168, 62, 0.15); }
-
-  .section-desc {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin: -8px 0 16px;
-    line-height: 1.5;
-  }
-
-  /* ===== Feature Tables ===== */
-  .ftable {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin: 0 0 8px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .ftable th {
-    background: linear-gradient(180deg, rgba(42, 34, 64, 0.9), rgba(22, 18, 34, 0.95));
-    color: var(--gold);
-    font-weight: 700;
-    text-align: left;
-    padding: 12px 16px;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    border-bottom: 2px solid var(--border);
-  }
-  .ftable th.center { text-align: center; }
-  .ftable td {
-    padding: 10px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(42, 34, 64, 0.5);
-    color: var(--text);
-    transition: background 0.1s;
-  }
-  .ftable tr:last-child td { border-bottom: none; }
-  .ftable tr:hover td { background: rgba(201, 168, 62, 0.04); }
-  .ftable tr:nth-child(even) td { background: rgba(22, 18, 34, 0.3); }
-  .ftable tr:nth-child(even):hover td { background: rgba(201, 168, 62, 0.06); }
-
-  /* Status cells */
-  .s { text-align: center; font-size: 18px; width: 110px; }
-  .s-yes { color: #50c878; }
-  .s-no { color: rgba(255,255,255,0.15); }
-  .s-na { color: #e06060; }
-
-  .feat-name { font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 13px; color: var(--gold-bright); }
-  .note { color: var(--text-muted); font-size: 13px; }
-</style>
-
 <h2 style="margin-bottom: 4px;">Feature Matrix</h2>
 <span class="badge badge-version">v1.2.0</span>
 <span class="badge badge-mc">1.20.1 / 1.21.1</span>
@@ -307,7 +168,7 @@ title: Feature Matrix
   <h3>API Method Reference</h3>
 </div>
 
-<h4 style="color: var(--gold); margin-top: 24px;"><span class="feat-name">cnpcext</span> &mdash; Server Script Global</h4>
+<h4 style="color: var(--text); margin-top: 24px;"><span class="feat-name">cnpcext</span> &mdash; Server Script Global</h4>
 
 <table class="ftable">
   <tr><th>Method</th><th class="center">Forge&nbsp;1.20.1</th><th class="center">Fabric&nbsp;1.21.1</th></tr>
@@ -328,7 +189,7 @@ title: Feature Matrix
   <tr><td><span class="feat-name">entityId(entity)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
-<h4 style="color: var(--gold); margin-top: 24px;"><span class="feat-name">IClientBridge</span> &mdash; via getClientBridge()</h4>
+<h4 style="color: var(--text); margin-top: 24px;"><span class="feat-name">IClientBridge</span> &mdash; via getClientBridge()</h4>
 
 <table class="ftable">
   <tr><th>Method</th><th class="center">Forge&nbsp;1.20.1</th><th class="center">Fabric&nbsp;1.21.1</th></tr>
@@ -348,7 +209,7 @@ title: Feature Matrix
   <tr><td><span class="feat-name">showHudElement(element)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
-<h4 style="color: var(--gold); margin-top: 24px;"><span class="feat-name">window.cnpc</span> &mdash; Browser-Side JS</h4>
+<h4 style="color: var(--text); margin-top: 24px;"><span class="feat-name">window.cnpc</span> &mdash; Browser-Side JS</h4>
 
 <table class="ftable">
   <tr><th>Property / Method</th><th class="center">HTML&nbsp;GUI</th><th class="center">HTML&nbsp;Overlay</th></tr>
