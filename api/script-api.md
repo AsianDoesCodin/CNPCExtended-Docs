@@ -231,3 +231,31 @@ function customCommand(e) {
 <div class="info-box">
 <strong>Tip:</strong> <code>customCommand(e)</code> fires on <strong>all player script tabs</strong>. Each tab can handle different commands, or you can put all handlers in one tab.
 </div>
+
+---
+
+### Cutscene Methods
+
+See the full [Cutscene System]({{ '/api/cutscenes' | relative_url }}) docs for details.
+
+```javascript
+cnpcext.startCutscene(player, "name")                    // play saved cutscene
+cnpcext.startCutscene(player, "name", optionsJson)       // with options
+cnpcext.stopCutscene(player)                              // stop + restore
+cnpcext.pauseCutscene(player)                             // freeze timeline
+cnpcext.resumeCutscene(player)                            // continue
+cnpcext.isInCutscene(player)                              // boolean
+cnpcext.moveCamera(player, keyframesJson)                 // ad-hoc camera
+```
+
+### `cutscene(e)` — Event Handler
+
+Fires at each keyframe phase. Define in the script that started the cutscene.
+
+```javascript
+function cutscene(e) {
+    e.player         // IPlayer
+    e.cutsceneName   // String
+    e.phase          // int — keyframe index (0-based), -1 = end
+}
+```

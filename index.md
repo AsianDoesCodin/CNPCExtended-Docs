@@ -20,6 +20,7 @@ CNPCExtended bridges **CNPC server-side scripts** with **real HTML/CSS/JS** rend
 
 - **Open HTML GUIs** from any CNPC script (NPC, Player, Block, Item)
 - **HTML Overlays** — render HTML on the HUD layer (skill bars, HP bars, quest trackers) without blocking input
+- **Cutscene System** — keyframe-based camera cutscenes with visual editor, fade transitions, and script phase events
 - **Hide vanilla HUD** — selectively hide hotbar, health, food, XP, crosshair, chat, etc.
 - **Bidirectional events** — HTML sends events to the server, server pushes data back
 - **Real MC item overlays** — render actual `ItemStack` with enchant glint, durability bars, tooltips on top of HTML

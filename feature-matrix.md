@@ -152,7 +152,7 @@ title: Feature Matrix
 
 <div class="summary-grid">
   <div class="summary-card">
-    <div class="num">20+</div>
+    <div class="num">30+</div>
     <div class="lbl">Total Features</div>
   </div>
   <div class="summary-card">
@@ -160,7 +160,7 @@ title: Feature Matrix
     <div class="lbl">Shared (Both)</div>
   </div>
   <div class="summary-card">
-    <div class="num">3</div>
+    <div class="num">4</div>
     <div class="lbl">Fabric-Only</div>
   </div>
   <div class="summary-card">
@@ -274,6 +274,33 @@ title: Feature Matrix
   <tr><td>Works in HTML Overlays</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
+<!-- ============ CUTSCENE SYSTEM ============ -->
+<div class="section-hdr">
+  <div class="icon">&#x1F3AC;</div>
+  <h3>Cutscene System</h3>
+  <span class="tag tag-new">NEW in v1.2</span>
+  <span class="tag tag-fabric">Fabric Only</span>
+</div>
+<p class="section-desc">Keyframe-based camera cutscenes with visual HTML editor, fade transitions, player protection, and script phase events.</p>
+
+<table class="ftable">
+  <tr><th>Feature</th><th class="center">Forge&nbsp;1.20.1</th><th class="center">Fabric&nbsp;1.21.1</th></tr>
+  <tr><td><span class="feat-name">startCutscene(player, name, options)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">stopCutscene</span> / <span class="feat-name">pauseCutscene</span> / <span class="feat-name">resumeCutscene</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">isInCutscene(player)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">moveCamera(player, json)</span> &mdash; ad-hoc keyframes</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">cutscene(e)</span> phase event handler</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Visual editor GUI (HTML)</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Fade transitions</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Cinematic black bars</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>FOV lock + hand hidden</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Mouse look blocked</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Player protection (freeze + invulnerable)</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Disconnect/reconnect failsafe</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Catmull-Rom camera interpolation</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">/cnpcext cutscene play &lt;name&gt; &lt;player&gt;</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+</table>
+
 <!-- ============ API REFERENCE ============ -->
 <div class="section-hdr">
   <div class="icon">&#x1F4E1;</div>
@@ -293,6 +320,12 @@ title: Feature Matrix
   <tr><td><span class="feat-name">closeOverlay</span> / <span class="feat-name">hasOverlay</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">hideHudElement(e, element)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">showHudElement(e, element)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">startCutscene(player, name, optionsJson)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">stopCutscene(player)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">pauseCutscene</span> / <span class="feat-name">resumeCutscene</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">isInCutscene(player)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">moveCamera(player, keyframesJson)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">entityId(entity)</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
 <h4 style="color: var(--gold); margin-top: 24px;"><span class="feat-name">IClientBridge</span> &mdash; via getClientBridge()</h4>
@@ -349,6 +382,8 @@ title: Feature Matrix
   <tr><td><span class="feat-name">HIDE_HUD_ELEMENT</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">SHOW_HUD_ELEMENT</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">SYNC_SCRIPTS_PATH</span></td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">PacketCutsceneStart</span> (S&rarr;C)</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">PacketCutsceneStop</span> (S&rarr;C)</td><td class="s s-no">&#x2500;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
 <!-- ============ KNOWN ISSUES ============ -->
