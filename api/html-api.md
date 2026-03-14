@@ -157,13 +157,13 @@ Render full Minecraft entities (NPCs, players, mobs) inside your HTML GUI. Entit
 
 #### Setup
 
-1. **Server script** — pass entity IDs in `overlayEntities`:
+1. **Server script** — pass entity IDs in `overlayEntities` (with optional display options):
 
 ```javascript
 cnpcext.openHtmlGui(e, "dialogue.html", 0, 0, JSON.stringify({
     overlayEntities: [
         {slot: 0, entityId: cnpcext.entityId(e.npc)},
-        {slot: 1, entityId: cnpcext.entityId(e.player)}
+        {slot: 1, entityId: cnpcext.entityId(e.player), rotation: 90, followCursor: false, animate: false}
     ]
 }))
 ```
@@ -186,11 +186,21 @@ Extracts the network entity ID from any CNPC IEntity wrapper.
 
 #### Behavior
 
-- Entity head tracks the mouse cursor (`followCursor = true`)
+- Entity head tracks the mouse cursor (`followCursor = true` by default)
 - Entity is rendered with CNPC's `CustomGuiEntityDisplay.drawEntity()`
 - The entity's feet anchor at the **bottom-center** of the `data-mc-entity` div
 - To hide an entity, set the div's `width` and `height` to `0` (CSS `opacity: 0` alone won't hide it — the renderer ignores opacity)
 - Works in both HTML GUIs and HUD overlays
+
+#### Per-Entity Display Options
+
+Each entity entry supports optional display options:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `rotation` | `180` | Y rotation in degrees. 180 = facing camera, 0 = facing away, 90 = left profile |
+| `followCursor` | `true` | Entity head tracks mouse cursor. Set `false` for static pose |
+| `animate` | `true` | Living animations (idle bobbing, arm swing, walk cycle). Set `false` to freeze |
 
 <div class="info-box">
 <strong>Fabric 1.21.1 only.</strong> Entity overlays are not yet available on Forge 1.20.1.
