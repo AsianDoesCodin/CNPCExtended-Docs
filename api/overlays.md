@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Item Overlays
+title: Item & Entity Overlays
 ---
 
 ## MC Item Overlays
@@ -60,16 +60,30 @@ If both `nbt` and `item` are present, `nbt` takes priority.
     <div data-mc-slot="1" style="width:32px; height:32px;"></div>
     <span>Golden Apple x5</span>
   </div>
-  <div class="item-cell">
-    <div data-mc-slot="2" style="width:32px; height:32px;"></div>
-    <span>Netherite Helmet</span>
-  </div>
-  <div class="item-cell">
-    <div data-mc-slot="3" style="width:32px; height:32px;"></div>
-    <span>Enchanted Book</span>
-  </div>
 </div>
 ```
+
+---
+
+### Item Scaling
+
+Use `data-mc-scale` to resize the rendered item. Default is `1` (16×16 MC pixels). Make the HTML element larger to match:
+
+```html
+<!-- Normal size (16×16) -->
+<div data-mc-slot="0" style="width:32px; height:32px;"></div>
+
+<!-- 2x scale (32×32 MC pixels) -->
+<div data-mc-slot="1" data-mc-scale="2" style="width:64px; height:64px;"></div>
+
+<!-- 3x scale (48×48 MC pixels) -->
+<div data-mc-slot="2" data-mc-scale="3" style="width:96px; height:96px;"></div>
+
+<!-- Half size -->
+<div data-mc-slot="3" data-mc-scale="0.5" style="width:16px; height:16px;"></div>
+```
+
+The item is rendered centered in the HTML element. Enchant glint, durability bars, and stack count decorations all scale with the item.
 
 ---
 
@@ -92,7 +106,43 @@ For scrollable lists, add `data-mc-clip` to the scroll container. Items outside 
 </div>
 ```
 
-The bridge JS automatically detects the `data-mc-clip` container and reports its bounds to Java, which uses GL scissoring to clip overlay rendering.
+---
+
+## Entity Overlays
+
+Render full CNPC entities (NPCs, players, mobs) on HTML GUIs and HUD overlays. **Fabric 1.21.1 only.**
+
+### Setup
+
+#### Server script
+
+```javascript
+cnpcext.openHtmlGui(e, "gui.html", 0, 0, JSON.stringify({
+    overlayEntities: [
+        {slot: 0, entityId: cnpcext.entityId(e.npc)},
+        {slot: 1, entityId: cnpcext.entityId(e.player), rotation: 90, followCursor: false, animate: false}
+    ]
+}))
+```
+
+#### HTML
+
+```html
+<div data-mc-entity="0" style="width:150px; height:210px;"></div>
+<div data-mc-entity="1" style="width:100px; height:140px;"></div>
+```
+
+### Per-entity options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `rotation` | `180` | Y rotation degrees. `180` = facing camera, `0` = facing away, `90` = left profile |
+| `followCursor` | `true` | Head tracks mouse cursor |
+| `animate` | `true` | Living animations (idle bobbing, arm swing). `false` = frozen pose |
+
+Entity feet anchor at bottom-center of the div. Size the div to control entity scale.
+
+To hide an entity: set `width: 0; height: 0` (CSS `opacity: 0` won't work — renderer ignores opacity).
 
 ---
 
@@ -100,19 +150,9 @@ The bridge JS automatically detects the `data-mc-clip` container and reports its
 
 | Rule | Details |
 |------|---------|
-| Slot matching | `data-mc-slot="N"` must match the `slot` index in `overlayItems` |
-| Key name | Use `overlayItems` in initData — not `items` (that's for your own data) |
-| Sizing | Items scale to match the HTML element dimensions |
+| Slot matching | `data-mc-slot="N"` / `data-mc-entity="N"` must match the `slot` index |
+| Key names | Use `overlayItems` for items, `overlayEntities` for entities |
+| Scaling | `data-mc-scale="N"` controls item render size (default 1) |
 | Tooltips | Hovering a rendered item shows the vanilla MC tooltip |
-| Clipping | Add `data-mc-clip` to a scrollable parent to enable scissoring |
-| Re-render | Items only render while the page is open; positions update every frame |
-
-<div class="info-box">
-<strong>Entity overlays</strong> (<code>data-mc-entity</code>) are planned for a future version.
-</div>
-
----
-
-### Works in HUD Overlays
-
-Item overlays and `data-mc-clip` also work in HUD overlays opened via `bridge.openOverlay()`. Use the same `overlayItems` format in the overlay's `initData` and `data-mc-slot` elements in the overlay HTML.
+| Clipping | `data-mc-clip` on a scrollable parent enables scissoring |
+| Works everywhere | Both HTML GUIs and HUD overlays support item/entity overlays |
