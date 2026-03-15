@@ -173,3 +173,38 @@ To hide an entity: set `width: 0; height: 0` (CSS `opacity: 0` won't work — re
 | Tooltips | Hovering a rendered item shows the vanilla MC tooltip |
 | Clipping | `data-mc-clip` on a scrollable parent enables scissoring |
 | Works everywhere | Both HTML GUIs and HUD overlays support item/entity overlays |
+
+---
+
+## Interactive Overlays (Cursor Unlock)
+
+HUD overlays are non-interactive by default. Use `setOverlayInteractive` to unlock the cursor so the player can click HTML elements (buttons, links, etc).
+
+### Server script
+
+```javascript
+var bridge = cnpcext.getClientBridge(e.player.getMCEntity())
+bridge.openOverlay("menu", "menu.html", 0, 0, 400, 300, JSON.stringify({items: [...]}))
+bridge.setOverlayInteractive("menu", true)   // unlock cursor
+// later:
+bridge.setOverlayInteractive("menu", false)  // re-lock cursor
+```
+
+### Escape key
+
+Player can press Escape to re-lock the cursor (closes the interaction layer, not the overlay).
+
+### Events from overlays
+
+`window.cnpc.sendEvent()` works from interactive overlays. Events fire as `htmlGuiEvent` in the script:
+
+```javascript
+function htmlGuiEvent(e) {
+    var data = JSON.parse(e.data)
+    if (data.__overlayName === "menu") {
+        // This event came from the "menu" overlay
+    }
+}
+```
+
+`e.data.__overlayName` identifies which overlay sent the event.
