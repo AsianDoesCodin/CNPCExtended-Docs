@@ -208,3 +208,9 @@ function htmlGuiEvent(e) {
 ```
 
 `e.data.__overlayName` identifies which overlay sent the event.
+
+### Close all overlays
+
+```javascript
+bridge.closeAllOverlays()  // destroy all overlays for this player
+```
