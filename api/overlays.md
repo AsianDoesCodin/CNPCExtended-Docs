@@ -114,16 +114,33 @@ Render full CNPC entities (NPCs, players, mobs) on HTML GUIs and HUD overlays. *
 
 ### Setup
 
-#### Server script
+There are two ways to provide entity data:
+
+#### Via NBT (recommended) — entity doesn't need to be spawned
+
+```javascript
+cnpcext.openHtmlGui(e, "gui.html", 0, 0, JSON.stringify({
+    overlayEntities: [
+        {slot: 0, nbt: cnpcext.entityNbt(e.npc)},
+        {slot: 1, nbt: cnpcext.entityNbt(e.npc), rotation: 90, followCursor: false}
+    ]
+}))
+```
+
+`cnpcext.entityNbt(entity)` serializes the entity to SNBT. The client creates a standalone entity from this data — it renders even if the original entity despawns, unloads, or was never spawned (clones, `world.createEntity()`).
+
+#### Via entity ID — requires entity to be in render range
 
 ```javascript
 cnpcext.openHtmlGui(e, "gui.html", 0, 0, JSON.stringify({
     overlayEntities: [
         {slot: 0, entityId: cnpcext.entityId(e.npc)},
-        {slot: 1, entityId: cnpcext.entityId(e.player), rotation: 90, followCursor: false, animate: false}
+        {slot: 1, entityId: cnpcext.entityId(e.player), animate: false}
     ]
 }))
 ```
+
+The entity must be spawned in the world and within the player's render distance. If it despawns or the player moves away, it disappears from the GUI.
 
 #### HTML
 
