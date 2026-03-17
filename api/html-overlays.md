@@ -34,6 +34,12 @@ bridge.openOverlay("hud", "hud.html", 0.5, 0.95, 400, 60, jsonData, true)
 **Position values:**
 - `x`, `y` in range `0.0–1.0` = percentage of screen (`0.5` = center)
 - `x`, `y` > `1` = raw pixel coordinates
+- `width=0, height=0` = **full screen** — overlay fills entire screen, position with CSS
+
+```javascript
+// Full-screen overlay — CSS controls all positioning
+bridge.openOverlay("hud", "my_hud.html", 0, 0, 0, 0, initData)
+```
 
 ---
 
