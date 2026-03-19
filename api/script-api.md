@@ -65,6 +65,34 @@ See [Client Queries]({{ '/api/queries' | relative_url }}) for query methods.
 
 ---
 
+### `cnpcext.setGuiEscapable(eventOrPlayer, escapable)`
+
+Control whether the player can close the HTML GUI with Escape.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `eventOrPlayer` | Event or IPlayer | A CNPC event object or IPlayer |
+| `escapable` | boolean | `true` = Escape closes GUI (default), `false` = Escape is blocked |
+
+```javascript
+function interact(e) {
+    cnpcext.openHtmlGui(e, "dialogue.html", 0, 0, JSON.stringify({text: "Choose wisely..."}))
+    cnpcext.setGuiEscapable(e, false)  // player must click a button to close
+}
+
+function htmlGuiEvent(e) {
+    if (e.eventName === "done") {
+        cnpcext.setGuiEscapable(e, true)  // re-enable before closing
+        var bridge = cnpcext.getClientBridge(e.player.getMCEntity())
+        bridge.closeHtmlGui()
+    }
+}
+```
+
+Also available on the bridge: `bridge.setGuiEscapable(false)`
+
+---
+
 ### `htmlGuiEvent(e)` — Event Handler
 
 Define this function in any script that calls `openHtmlGui`. It fires when the HTML calls `window.cnpc.sendEvent()`.
