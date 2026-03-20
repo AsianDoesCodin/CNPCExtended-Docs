@@ -186,7 +186,8 @@ title: Feature Matrix
   <tr><td><span class="feat-name">stopCutscene(player)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">pauseCutscene</span> / <span class="feat-name">resumeCutscene</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">isInCutscene(player)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
-  <tr><td><span class="feat-name">moveCamera(player, keyframesJson)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>  <tr><td><span class=\"feat-name\">setGuiEscapable(e, boolean)</span></td><td class=\"s s-yes\">&#x2714;</td><td class=\"s s-yes\">&#x2714;</td></tr>  <tr><td><span class="feat-name">entityId(entity)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">moveCamera(player, keyframesJson)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">entityId(entity)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">entityNbt(entity)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
@@ -196,7 +197,6 @@ title: Feature Matrix
   <tr><th>Method</th><th class="center">Forge&nbsp;1.20.1</th><th class="center">Fabric&nbsp;1.21.1</th></tr>
   <tr><td><span class="feat-name">openHtmlGui(file, w, h, json)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">closeHtmlGui()</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
-  <tr><td><span class="feat-name">setGuiEscapable(boolean)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">sendToBrowser(event, json)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">queryVideoSettings(cb)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">queryKeybinds(cb)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
@@ -209,7 +209,6 @@ title: Feature Matrix
   <tr><td><span class="feat-name">hasOverlay(name)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">hideHudElement(element)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">showHudElement(element)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
-  <tr><td><span class="feat-name">setGuiEscapable(boolean)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
 <h4 style="color: var(--text); margin-top: 24px;"><span class="feat-name">window.cnpc</span> &mdash; Browser-Side JS</h4>

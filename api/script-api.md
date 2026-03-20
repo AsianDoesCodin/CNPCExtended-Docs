@@ -11,7 +11,7 @@ The `cnpcext` global is auto-injected into every CNPC script (NPC, Player, Block
 
 ### `cnpcext.openHtmlGui(eventOrPlayer, filename, width, height, jsonInitData)`
 
-Opens an HTML GUI on a player's screen.
+Opens an HTML GUI on a player's screen. Returns a `GuiHandle` for chaining options.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
@@ -20,6 +20,7 @@ Opens an HTML GUI on a player's screen.
 | `width` | Number | Browser width in pixels (`0` = fullscreen) |
 | `height` | Number | Browser height in pixels (`0` = fullscreen) |
 | `jsonInitData` | String | JSON string — available as `window.cnpc.initData` in the browser |
+| **Returns** | `GuiHandle` | Chainable handle — `.setGuiEscapable(false)` blocks Escape |
 
 #### With an event (recommended)
 
@@ -65,31 +66,23 @@ See [Client Queries]({{ '/api/queries' | relative_url }}) for query methods.
 
 ---
 
-### `cnpcext.setGuiEscapable(eventOrPlayer, escapable)`
+### `GuiHandle.setGuiEscapable(escapable)`
 
-Control whether the player can close the HTML GUI with Escape.
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `eventOrPlayer` | Event or IPlayer | A CNPC event object or IPlayer |
-| `escapable` | boolean | `true` = Escape closes GUI (default), `false` = Escape is blocked |
+Block or allow Escape from closing the HTML GUI. Chained off `openHtmlGui()`.
 
 ```javascript
 function interact(e) {
     cnpcext.openHtmlGui(e, "dialogue.html", 0, 0, JSON.stringify({text: "Choose wisely..."}))
-    cnpcext.setGuiEscapable(e, false)  // player must click a button to close
+        .setGuiEscapable(false)  // player must click a button to close
 }
 
 function htmlGuiEvent(e) {
     if (e.eventName === "done") {
-        cnpcext.setGuiEscapable(e, true)  // re-enable before closing
         var bridge = cnpcext.getClientBridge(e.player.getMCEntity())
         bridge.closeHtmlGui()
     }
 }
 ```
-
-Also available on the bridge: `bridge.setGuiEscapable(false)`
 
 ---
 
