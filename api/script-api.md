@@ -280,3 +280,42 @@ function cutscene(e) {
     e.phase          // int — keyframe index (0-based), -1 = end
 }
 ```
+
+---
+
+### Key State Polling (Server-Side)
+
+<span class="badge badge-version">New in v1.6.0</span>
+
+Query a player's real-time key state from server scripts. Works even when overlays/GUIs are open — the client syncs key state via GLFW-level tracking.
+
+```javascript
+var bridge = cnpcext.getClientBridge(player.getMCEntity())
+bridge.isKeyHeld(86)           // boolean — V key held? Uses GLFW key codes
+bridge.getKeyHoldDuration(86)  // int — approximate ticks held (0 if not)
+bridge.isInGui()               // boolean — any screen/GUI open
+bridge.isTyping()              // boolean — in chat input
+bridge.getOpenScreen()         // string — screen class name or ""
+```
+
+#### Hold-to-Show Overlay Pattern
+
+```javascript
+var wasHeld = false
+function tick(e) {
+    var bridge = cnpcext.getClientBridge(e.player.getMCEntity())
+    if (bridge.isTyping()) return
+    var held = bridge.isKeyHeld(86)  // V
+    if (held && !wasHeld) {
+        cnpcext.openOverlay(e, "wheel", "radial.html", 0, 0, 0, 0, "{}")
+        bridge.setOverlayInteractive("wheel", true)
+    } else if (!held && wasHeld) {
+        cnpcext.closeOverlay(e.player, "wheel")
+    }
+    wasHeld = held
+}
+```
+
+<div class="info-box">
+<strong>Note:</strong> GLFW key codes differ from CNPC's <code>keyPressed</code> event codes. Common GLFW codes: A=65, V=86, TAB=258, ESC=256, SPACE=32, LSHIFT=340, F1=290.
+</div>

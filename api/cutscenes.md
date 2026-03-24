@@ -5,9 +5,9 @@ title: Cutscene System
 
 ## Cutscene System
 
-Keyframe-based camera cutscenes with a visual HTML editor, smooth interpolation, fade transitions, and player protection. Create cutscenes in-game, edit with a timeline GUI, play via script or command.
+Keyframe-based camera cutscenes with a visual HTML editor, smooth interpolation, fade transitions, per-keyframe easing, and player protection. Create cutscenes in-game, edit with a timeline GUI, play via script or command.
 
-**Requires**: Fabric 1.21.1 (Forge planned). MCEF for the editor GUI.
+**Requires**: Forge 1.20.1 or Fabric 1.21.1. MCEF for the editor GUI.
 
 ---
 
@@ -42,7 +42,8 @@ cnpcext.startCutscene(player, "village_intro", JSON.stringify({
     speed: 1.5,        // playback speed multiplier (default 1.0)
     hideHud: true,     // hide all HUD elements (default true)
     protect: true,     // freeze + invulnerable (default true)
-    bars: true         // show cinematic black bars (default false)
+    bars: true,        // show cinematic black bars (default false)
+    keepPosition: true // teleport player to last keyframe on end (default true)
 }))
 
 // Control
@@ -106,6 +107,9 @@ function htmlGuiEvent(e) {
 | `holdTicks` | int | Ticks to hold at this position before advancing |
 | `transition` | string | `"travel"` (smooth interpolation) or `"fade"` (fade to black) |
 | `fadeTicks` | int | Fade duration for `"fade"` transitions (default 20) |
+| `easing` | string | Interpolation curve (default `"smoothstep"`) |
+
+**Available easings**: `linear`, `smoothstep`, `easeIn`, `easeOut`, `easeInOut`, `sine`, `expo`, `circ`, `bounce`, `elastic`, `back`
 
 ---
 
@@ -117,6 +121,7 @@ function htmlGuiEvent(e) {
 | `hideHud` | boolean | true | Hide all vanilla HUD elements |
 | `protect` | boolean | true | Freeze player (speed 0) + invulnerable |
 | `bars` | boolean | false | Show cinematic letterbox bars |
+| `keepPosition` | boolean | true | Teleport player to last keyframe position on end |
 
 ---
 

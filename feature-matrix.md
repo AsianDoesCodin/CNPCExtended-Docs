@@ -70,6 +70,8 @@ title: Feature Matrix
   <tr><td>Clip Rects (<span class="feat-name">data-mc-clip</span>)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Scissor clipping for scrollable item lists</td></tr>
   <tr><td>Client Queries</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">Video, keybinds, sound, player state, packs</td></tr>
   <tr><td>Client Script Engine</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note">JSR-223 JavaScript on client side</td></tr>
+  <tr><td>Key State Tracking</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note"><span class="feat-name">bridge.isKeyHeld()</span>, <span class="feat-name">isInGui()</span>, <span class="feat-name">isTyping()</span></td></tr>
+  <tr><td>Client Key Events</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td><td class="note"><span class="feat-name">clientKeyPressed</span>, <span class="feat-name">clientKeyReleased</span>, <span class="feat-name">clientKeyHeld</span></td></tr>
 </table>
 
 <!-- ============ OVERLAYS ============ -->
@@ -142,7 +144,7 @@ title: Feature Matrix
   <h3>Cutscene System</h3>
   <span class="tag tag-both">Forge + Fabric</span>
 </div>
-<p class="section-desc">Keyframe-based camera cutscenes with visual HTML editor, fade transitions, player protection, and script phase events.</p>
+<p class="section-desc">Keyframe-based camera cutscenes with visual HTML editor, fade transitions, per-keyframe easing, player protection, and script phase events.</p>
 
 <table class="ftable">
   <tr><th>Feature</th><th class="center">Forge&nbsp;1.20.1</th><th class="center">Fabric&nbsp;1.21.1</th></tr>
@@ -152,6 +154,8 @@ title: Feature Matrix
   <tr><td><span class="feat-name">moveCamera(player, json)</span> &mdash; ad-hoc keyframes</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">cutscene(e)</span> phase event handler</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Visual editor GUI (HTML)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Per-keyframe easing (11 curves)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Keep position on end</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Fade transitions</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Cinematic black bars</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>FOV lock + hand hidden</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
@@ -209,6 +213,11 @@ title: Feature Matrix
   <tr><td><span class="feat-name">hasOverlay(name)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">hideHudElement(element)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td><span class="feat-name">showHudElement(element)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">isKeyHeld(keyCode)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">getKeyHoldDuration(keyCode)</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">isInGui()</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">isTyping()</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td><span class="feat-name">getOpenScreen()</span></td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
 
 <h4 style="color: var(--text); margin-top: 24px;"><span class="feat-name">window.cnpc</span> &mdash; Browser-Side JS</h4>
