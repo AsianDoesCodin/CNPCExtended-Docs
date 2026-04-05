@@ -46,10 +46,6 @@ The entire HTML file (with injected bridge JS) is Base64-encoded in one network 
 
 The event routing session lasts until the GUI is closed or the player disconnects. Opening a new GUI for the same player replaces the previous session. There's no way to have multiple simultaneous sessions per player.
 
-### 9. Entity Overlays Not Yet Available
-
-Item overlays (`data-mc-slot`) work. Entity rendering (`data-mc-entity`) is planned for a future version. Use CNPC's built-in `addEntityDisplay()` for entity displays in native GUIs.
-
-### 10. Queries Are Read-Only
+### 9. Queries Are Read-Only
 
 Client settings (FOV, render distance, volume, keybinds, etc.) can be **queried** but not **changed** from the server.
