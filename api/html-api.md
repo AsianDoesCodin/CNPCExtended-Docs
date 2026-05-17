@@ -14,6 +14,7 @@ The `window.cnpc` object is automatically injected into every HTML GUI. Availabl
 | Property | Type | Description |
 |----------|------|-------------|
 | `window.cnpc.initData` | Object | Parsed JSON from the `jsonInitData` parameter passed to `openHtmlGui` |
+| `window.cnpc.assetUrl` | String | Base URL for scripts-folder assets (`"cnpc://"`) |
 
 ```javascript
 // Server script

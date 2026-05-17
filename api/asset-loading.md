@@ -7,7 +7,7 @@ title: Asset Loading (cnpc://)
 
 Load images, CSS, JavaScript, fonts, and other files directly from the scripts folder in your HTML GUIs and overlays.
 
-**Requires**: MCEF mod on client. Fabric 1.21.1 only (Forge planned).
+**Requires**: MCEF mod on client. Supported on Fabric 1.21.1 and Forge 1.20.1.
 
 ---
 
@@ -45,7 +45,7 @@ cnpc://assets/icon.png
 <style>
   @font-face {
     font-family: 'MCFont';
-    src: url('cnpc://fonts/minecraft.woff2');
+    src: url('cnpc://fonts/minecraft.woff2') format('woff2');
   }
 </style>
 ```
@@ -80,6 +80,8 @@ Place your assets anywhere inside the scripts folder:
         theme.css        ← cnpc://css/theme.css
     js/
         utils.js         ← cnpc://js/utils.js
+    fonts/
+        minecraft.woff2  ← cnpc://fonts/minecraft.woff2
 ```
 
 ---
@@ -90,6 +92,7 @@ Place your assets anywhere inside the scripts folder:
 - Backslashes (`\`) are rejected
 - Only regular files are served (no directories)
 - The scripts path is synced from server to client on join and cleared on disconnect
+- Query/hash suffixes are ignored for file lookup, so cache-busting URLs work (`?v=1`, `#hash`)
 
 ---
 
@@ -107,6 +110,7 @@ Any file type works. MIME types are auto-detected from the extension:
 | `.js` | `application/javascript` |
 | `.json` | `application/json` |
 | `.woff`, `.woff2` | `font/woff`, `font/woff2` |
+| `.ttf`, `.otf`, `.eot` | `font/ttf`, `font/otf`, `application/vnd.ms-fontobject` |
 | `.mp3`, `.ogg` | `audio/mpeg`, `audio/ogg` |
 
 ---

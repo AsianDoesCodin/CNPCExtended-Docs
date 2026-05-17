@@ -134,6 +134,8 @@ title: Feature Matrix
   <tr><td><span class="feat-name">window.cnpc.assetUrl</span> in bridge JS</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Auto-sync scripts path on join</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Path traversal protection</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Web font MIME types (<span class="feat-name">woff/woff2/ttf/otf/eot</span>)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
+  <tr><td>Cache-busted URLs (<span class="feat-name">?v=</span>, <span class="feat-name">#hash</span>)</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Works in HTML GUIs</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
   <tr><td>Works in HTML Overlays</td><td class="s s-yes">&#x2714;</td><td class="s s-yes">&#x2714;</td></tr>
 </table>
